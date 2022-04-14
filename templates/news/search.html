@@ -1,9 +1,9 @@
 {% extends 'flatpages/default.html' %}
 {% load custom_filters %}
 {% block title %}
-Posts
+Публикации
 {% endblock title %}
-
+{% load custom_filters %}
 {% block content %}
 <!-- Перед таблицей добавим форму для поиска -->
 <form method="GET">
@@ -16,7 +16,7 @@ Posts
     <hr>
     <h2>Посты на текущее время: {{ time_now|date:'d M Y' }}</h2>
     <hr>
-    {% if search %}
+{% if post_filter %}
         <table>
             <tr>
                 <td>
@@ -29,7 +29,7 @@ Posts
                     Краткое содержание (20 слов)
                 </td>
             </tr>
-        {% for post in filter.qs %}
+        {% for Post in filter.qs %}
             <tr>
                 <td>
                     {{Post.title|Censor}}
@@ -43,7 +43,7 @@ Posts
             </tr>
         {% endfor %}
         </table>
-    {% else %}
+   {% else %}
         <h2>Товаров нет!</h2>
     <!-- Проверяем, что поддерживается постраничный вывод -->
 
@@ -75,4 +75,3 @@ Posts
 {% endif %}
 <!-- блок пагинатора -->
 {% endblock content %}
-
