@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import *
 from .filters import post_filter
 from django.core.paginator import Paginator
@@ -56,3 +56,21 @@ class PostCreate(CreateView):
             form.save()
 
         return redirect('news')
+
+
+class PostUpdate(UpdateView):
+    model = Post
+    template_name = 'news/post_add.html'
+    #context_object_name = 'post_update'
+    form_class = PostForm
+
+    def get_object(self, **kwargs):
+        id = self.kwargs.get('pk')
+        return Post.objects.get(pk=id)
+
+
+class PostDelete(DeleteView):
+    model = Post
+    template_name = 'news/post_delete.html'
+    success_url = '/news'
+    

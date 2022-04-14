@@ -1,0 +1,25 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+
+{% block title %}
+Удаление новости
+{% endblock title %}
+
+
+{% block content %}
+<h3>{{post.title|Censor}}</h3>
+<h6> дата публикации {{post.created|date:"d-m-Yг. h:i"}} </h6>
+<h6><span style="color: #ff6600;">Вы действительно хотите удалить эту новость???</span></h6>
+<form method="post">
+    {% csrf_token%}
+    {{form}}
+<input type="submit" value="удалить">
+</form>
+<hr>
+{{post.text|Censor}}
+{% endblock content %}
+
+
+
+
