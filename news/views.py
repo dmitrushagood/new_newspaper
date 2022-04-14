@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from .models import *
 from .filters import post_filter
@@ -20,6 +20,7 @@ class NewsView(ListView):
         context['time_now'] = datetime.utcnow()
         context['value1'] = None
         return context
+
 
 class PostView(DetailView):
     model = Post
@@ -48,3 +49,10 @@ class PostCreate(CreateView):
     context_object_name = 'post_add'
     form_class = PostForm
 
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)  # создаём новую форму, забиваем в неё данные из POST-запроса
+
+        if form.is_valid():  # если пользователь ввёл всё правильно и нигде не ошибся, то сохраняем новый товар
+            form.save()
+
+        return redirect('news')

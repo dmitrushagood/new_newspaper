@@ -1,9 +1,7 @@
-from django.contrib import admin
 from django.urls import path
 from .views import NewsView, PostView, NewsFilter,PostCreate
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
     path('', NewsView.as_view(), name='news'),
 
     #path('news/', PostsList.as_view(), name='news'),
