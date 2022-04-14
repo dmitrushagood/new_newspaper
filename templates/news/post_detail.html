@@ -42,7 +42,7 @@
             {{ post.created|default:"Без даты" }}
         </td>
         <td>
-            {{ post.text }}
+            {{ post.text|truncatewords:5}}
         </td>
     </tr>
 </table>
