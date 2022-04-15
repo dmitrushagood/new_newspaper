@@ -40,7 +40,7 @@
         <td>
             {{ post.title|default:"Без заголовка"|truncatewords:4|title }}
 
-            <a href="{% url 'post_detail' post.id %}">{{ product.name|title }}</a> <!-- При нажатии на имя товара в таблице нас теперь будет перекидывать на страницу с самого товара -->
+
             <a href="{% url 'post_update' post.id %}"><u>Редактировать</u></a> <!-- добавим ссылку на редактирование товара-->
 
             <a href="{% url 'post_delete' post.id %}"><u> Удалить </u></a> <!-- добавим ссылку на удаление товара-->

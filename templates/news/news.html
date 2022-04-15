@@ -25,7 +25,9 @@ News
         {% for new in news %}
             <tr>
                 <td>
-                    {{new.title|Censor}}
+                    <a href="{% url 'post_detail' new.id %}">{{ new.title|title|Censor }}</a> <!-- При нажатии на имя товара в таблице нас теперь будет перекидывать на страницу с самого товара -->
+
+
                 </td>
                 <td>
                     {{new.created}}

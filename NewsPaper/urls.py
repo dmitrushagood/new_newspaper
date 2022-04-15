@@ -7,9 +7,9 @@ urlpatterns = [
     #path('news/', include('news.urls')),  не удалил на случай изменений в будущем
     #path('', include('news.urls')),
     #path('auth/', include('allauth.urls')),
-    #path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),     # вход в приложение
     #path('login/', LoginView.as_view(template_name='login.html'), name='login'),
-    #path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     ##path('appointment/', include('appointment.urls')),
     #path('appointments/', include(('appointment.urls', 'appointments'), namespace='appointments')),
 ]

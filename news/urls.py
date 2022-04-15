@@ -10,7 +10,7 @@ urlpatterns = [
     path('search/', NewsFilter.as_view(), name='post_filter'),
 
     path('add/', PostCreate.as_view(), name='post_add'),
-        path('<int:pk>/edit/', PostUpdate.as_view(), name='post_update'),
+    path('<int:pk>/edit/', PostUpdate.as_view(), name='post_update'),
     path('<int:pk>/delete/', PostDelete.as_view(), name='post_delete'),
     #path('', IndexView.as_view()),
     #path('upgrade/', upgrade_me, name='upgrade'),

@@ -5,6 +5,7 @@ from .filters import post_filter
 from django.core.paginator import Paginator
 from datetime import datetime
 from .forms import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class NewsView(ListView):
@@ -43,7 +44,7 @@ class NewsFilter(ListView):
         return context
 
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):  # обязателньо сначала миксин, иначе не работает
     model = Post
     template_name = 'news/post_add.html'
     context_object_name = 'post_add'
@@ -58,7 +59,7 @@ class PostCreate(CreateView):
         return redirect('news')
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(LoginRequiredMixin, UpdateView):   # редактор публикации
     model = Post
     template_name = 'news/post_add.html'
     #context_object_name = 'post_update'
