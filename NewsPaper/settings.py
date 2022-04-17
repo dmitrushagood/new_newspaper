@@ -147,7 +147,9 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'    # пишем 'none' если хотим без обязательного подтверждения почты
 
-#ACCOUNT_FORMS = {'signup': 'news.models.BasicSignupForm'}
+ACCOUNT_FORMS = {'signup': 'news.forms.BasicSignupForm'}    # Чтобы allauth распознал нашу форму для автоматического
+# добавления юзеров в группу как ту, что должна  выполняться вместо формы по умолчанию, необходимо добавить строчку в
+# файл настроек проекта settings.py:
 
 EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
 EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
