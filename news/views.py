@@ -6,6 +6,11 @@ from django.core.paginator import Paginator
 from datetime import datetime
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
+from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
+
+
 
 
 class NewsView(ListView):
@@ -74,4 +79,13 @@ class PostDelete(DeleteView):
     model = Post
     template_name = 'news/post_delete.html'
     success_url = '/news'
-    
+
+
+@login_required
+def upgrade_status(request):
+    user = request.user     # получили объект текущего пользователя из переменной запроса
+    author_status = Group.objects.get(name='author')    # Вытащили author_группу из модели Group
+    if not request.user.groups.filter(name='author').exists():  #проверяем, находится ли пользователь в этой группе
+        # (вдруг кто-то решил перейти по этому URL, уже имея Author статус).
+        author_status.user._set.add(user)       # он всё-таки ещё не в ней — добавляем.
+    return redirect('/news')
