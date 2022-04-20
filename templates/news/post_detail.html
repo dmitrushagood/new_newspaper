@@ -29,6 +29,9 @@
                 Первые 20 слов текста статьи
             </b>
         </td>
+        <td>
+                    Категория
+        </td>
     </tr>
 
     <tr>
@@ -51,6 +54,9 @@
         </td>
         <td>
             {{ post.text|truncatewords:5}}
+        </td>
+        <td>
+                    {{post.cats}}
         </td>
     </tr>
 </table>

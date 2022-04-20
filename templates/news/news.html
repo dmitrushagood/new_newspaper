@@ -5,7 +5,7 @@ News
 {% endblock title %}
 
 {% block content %}
-    <h1>Все статьи\новости</h1>
+    <h1>Все статьи\новости для {{request.user}}</h1>
     <hr>
 
     <h2>Посты на текущее время: {{ time_now|date:'d M Y' }} </h2>
@@ -22,6 +22,9 @@ News
                 <td>
                     Краткое содержание (20 слов)
                 </td>
+                <td>
+                    Категория
+                </td>
             </tr>
         {% for new in news %}
             <tr>
@@ -36,15 +39,19 @@ News
                 <td>
                     {{new.text|truncatewords:20|Censor}}
                 </td>
+                <td>
+                    {{new.cats}}
+                </td>
             </tr>
         {% endfor %}
         </table>
-    {% else %} Постов нет!</h2>
+    {% else %}
+<h2>Постов нет!</h2>
     {% endif %}
 <br>
 
 
-{% if is_not_premium %}
+{% if is_not_author %}
 <button> <a href="upgrade"> Стать автором!</a> </button>
 {% endif %}
 

@@ -23,7 +23,7 @@ class NewsView( ListView):
         context = super().get_context_data(**kwargs)
         context['time_now'] = datetime.utcnow()
         context['value1'] = None
-        context['is_not_premium'] = not self.request.user.groups.filter(name='premium').exists()
+        context['is_not_author'] = not self.request.user.groups.filter(name='author').exists()
         return context
 
 
@@ -54,8 +54,7 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):  # о
     template_name = 'news/post_add.html'
     context_object_name = 'post_add'
     form_class = PostForm
-    permission_required = ('news.add_Post',
-                           'news.change_Post')
+    permission_required = ('news.add_post',)
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)  # создаём новую форму, забиваем в неё данные из POST-запроса
@@ -71,8 +70,8 @@ class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):  # р
     template_name = 'news/post_add.html'
     # context_object_name = 'post_update'
     form_class = PostForm
-    permission_required = ('news.add_Post',
-                           'news.change_Post')
+    permission_required = ('news.add_post',
+                           'news.change_post')
 
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
