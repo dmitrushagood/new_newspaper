@@ -57,8 +57,8 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):  # о
 
     permission_required = ('news.add_post',)
 
-    permission_required = ('news.add_Post',
-                           'news.change_Post')
+    #permission_required = ('news.add_Post',
+    #                       'news.change_Post')
 
 
     def post(self, request, *args, **kwargs):
@@ -79,8 +79,7 @@ class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):  # р
     permission_required = ('news.add_post',
                            'news.change_post')
 
-    permission_required = ('news.add_Post',
-                           'news.change_Post')
+    #permission_required = ('news.change_Post',)
 
 
     def get_object(self, **kwargs):
