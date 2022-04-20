@@ -5,7 +5,7 @@ from .filters import post_filter
 from django.core.paginator import Paginator
 from datetime import datetime
 from .forms import PostForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
@@ -49,11 +49,13 @@ class NewsFilter(ListView):
         return context
 
 
-class PostCreate(LoginRequiredMixin, CreateView):  # обязателньо сначала миксин, иначе не работает
+class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):  # обязателньо сначала миксин, иначе не работает
     model = Post
     template_name = 'news/post_add.html'
     context_object_name = 'post_add'
     form_class = PostForm
+    permission_required = ('news.add_Post',
+                           'news.change_Post')
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)  # создаём новую форму, забиваем в неё данные из POST-запроса
@@ -64,11 +66,13 @@ class PostCreate(LoginRequiredMixin, CreateView):  # обязателньо сн
         return redirect('news')
 
 
-class PostUpdate(LoginRequiredMixin, UpdateView):  # редактор публикации
+class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):  # редактор публикации
     model = Post
     template_name = 'news/post_add.html'
     # context_object_name = 'post_update'
     form_class = PostForm
+    permission_required = ('news.add_Post',
+                           'news.change_Post')
 
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
