@@ -44,6 +44,11 @@ News
 <br>
 
 
+{% if is_not_premium %}
+<button> <a href="upgrade"> Стать автором!</a> </button>
+{% endif %}
+
+
 {% if is_paginated %}
 
     {% if page_obj.has_previous %}

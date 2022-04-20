@@ -148,7 +148,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'    # пишем 'none' если хотим без обязательного подтверждения почты
+ACCOUNT_EMAIL_VERIFICATION = 'none'   # пишем 'none' если хотим без обязательного подтверждения почты или mandatory
 
 ACCOUNT_FORMS = {'signup': 'news.forms.BasicSignupForm'}    # Чтобы allauth распознал нашу форму для автоматического
 # добавления юзеров в группу как ту, что должна  выполняться вместо формы по умолчанию, необходимо добавить строчку в
