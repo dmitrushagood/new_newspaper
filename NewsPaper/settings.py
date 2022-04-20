@@ -31,6 +31,8 @@ INSTALLED_APPS = [
 
     'news',
     'accounts',
+    'sign',
+    'protect',
     #'appointment.apps.AppointmentConfig',
 
     'allauth',
@@ -138,8 +140,9 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/news'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/logout/'
+LOGIN_REDIRECT_URL = '/news/'
+#ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/logout/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
