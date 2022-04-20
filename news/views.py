@@ -11,7 +11,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 
 
-class NewsView(LoginRequiredMixin, ListView):
+class NewsView( ListView):
     model = Post
     template_name = 'news/news.html'
     context_object_name = 'news'
