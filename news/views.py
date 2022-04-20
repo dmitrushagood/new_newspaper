@@ -54,7 +54,12 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):  # о
     template_name = 'news/post_add.html'
     context_object_name = 'post_add'
     form_class = PostForm
+
     permission_required = ('news.add_post',)
+
+    permission_required = ('news.add_Post',
+                           'news.change_Post')
+
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)  # создаём новую форму, забиваем в неё данные из POST-запроса
@@ -70,8 +75,13 @@ class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):  # р
     template_name = 'news/post_add.html'
     # context_object_name = 'post_update'
     form_class = PostForm
+
     permission_required = ('news.add_post',
                            'news.change_post')
+
+    permission_required = ('news.add_Post',
+                           'news.change_Post')
+
 
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
