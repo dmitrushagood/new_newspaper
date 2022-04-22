@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+
+{% block content %}
+<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
+
+
+
+
+
+
+
+
+<button><a href="{% url 'subscribe' post.id %}">Подписаться</a></button>
+
+{% endif %}
+
+{% endblock content %

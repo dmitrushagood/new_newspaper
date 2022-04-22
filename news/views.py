@@ -108,6 +108,20 @@ def upgrade_me(request):
         author_status.user_set.add(user)  # он всё-таки ещё не в ней — добавляем.
     return redirect('/news/upgraded/')
 
+
+#@login_required
+#def subscribe(request, *args, **kwargs):
+#    post = Post.objects.get(pk=kwargs['pk'])
+#    for cats in post.cats.all():
+#        user = User.objects.get(pk=request.user.id)
+#        cats.subscribers.add(user)
+#    return redirect('news')
+
+
+
+
+
+
 # class IndexView(LoginRequiredMixin, TemplateView):
 #    template_name = 'protect/index.html'
 #
@@ -115,3 +129,4 @@ def upgrade_me(request):
 #        context = super().get_context_data(**kwargs)
 #        context['is_not_author'] = not self.request.user.groups.filter(name='author').exists()
 #        return context
+
