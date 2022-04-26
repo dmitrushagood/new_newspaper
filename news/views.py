@@ -109,13 +109,13 @@ def upgrade_me(request):
     return redirect('/news/upgraded/')
 
 
-#@login_required
-#def subscribe(request, *args, **kwargs):
-#    post = Post.objects.get(pk=kwargs['pk'])
-#    for cats in post.cats.all():
-#        user = User.objects.get(pk=request.user.id)
-#        cats.subscribers.add(user)
-#    return redirect('news')
+@login_required
+def subscribe(request, *args, **kwargs):
+    post = Post.objects.get(pk=kwargs['pk'])
+    for cats in post.cats.all():
+        user = User.objects.get(pk=request.user.id)
+        cats.subscribers.add(user)
+    return redirect('news')
 
 
 
