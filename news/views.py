@@ -11,7 +11,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.core.mail import send_mail
-from .signals import check_posts
+
 
 class NewsView( ListView):
     model = Post
@@ -61,6 +61,7 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):  # о
 
     #permission_required = ('news.add_Post',
     #                       'news.change_Post')
+
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)  # создаём новую форму, забиваем в неё данные из POST-запроса
@@ -118,6 +119,30 @@ def subscribe(request, *args, **kwargs):
         cats.subscribers.add(user)
     return redirect('news')
 
+
+class Post_email(View):
+    
+    def get(self, request, *args, **kwargs):
+        return render(request, 'make_appointment.html', {})
+
+    def post(self, request, *args, **kwargs):
+        post = Post(
+            date=datetime.strptime(request.POST['date'], '%Y-%m-%d'),
+            client_name=request.POST['client_name'],
+            message=request.POST['message'],
+        )
+        post.save()
+
+        # отправляем письмо
+        send_mail(
+            subject=f'{post.author}:  {post.title}',
+            # имя автора и дата записи будут в теме для удобства
+            message=post.text[::50],  # сообщение с кратким описанием проблемы
+            from_email='dimas00095@yandex.ru',  # здесь указываете почту, с которой будете отправлять (об этом попозже)
+            recipient_list={User.email}  # здесь список получателей. Например, секретарь, сам врач и т. д.
+        )
+
+        return redirect('appointments:make_appointment')
 
 
 

@@ -13,7 +13,7 @@ class PostForm(ModelForm):
         fields = ['author', 'cats', 'title', 'text', 'check_box']
 
 
-class BasicSignupForm(SignupForm):  # автоматическое добавление новых юзеров в группу common
+class BasicSignupForm(SignupForm):  # автоматическое добавление новых юзеров в группу  common
 
     def save(self, request):
         user = super(BasicSignupForm, self).save(request)
