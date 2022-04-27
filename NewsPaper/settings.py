@@ -29,11 +29,12 @@ INSTALLED_APPS = [
 
     'django_filters',
 
-    'news',
+    #'news',
     'accounts',
     'sign',
     'protect',
     #'appointment.apps.AppointmentConfig',
+    'news.apps.NewsConfig',
 
     'allauth',
     'allauth.account',
