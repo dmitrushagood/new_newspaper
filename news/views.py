@@ -71,6 +71,16 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):  # о
 
         return redirect('news')
 
+    '''def post(self, request, *args, **kwargs):
+        result = super().post(request, *args, **kwargs)
+        # блок с дополнительным кодом, например, вызов таски celery_notify_subscribers
+        return result
+
+Про вопрос добавления нескольких категорий через add, если categorys-список категорий:
+    add(*categorys)
+    
+    Это написала Екатерина 
+    '''
 
 class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):  # редактор публикации
     model = Post
