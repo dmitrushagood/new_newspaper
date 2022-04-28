@@ -28,6 +28,11 @@ class Category(models.Model):
     name = models.CharField(max_length=64, unique=True)
     subscribers = models.ManyToManyField(User,  through='CategoryUser')
 
+    def get_subscribers_emails(self):       # добавление емейла сабсов
+        result = set()
+        for user in self.subscribers.all():
+            result.add(user.email)
+        return result
 
 class CategoryUser(models.Model):
 

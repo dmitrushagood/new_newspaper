@@ -24,7 +24,7 @@ def my_job():
     delta = datetime.timedelta(7)
     start_date = datetime.datetime.utcnow() - delta
     end_date = datetime.datetime.utcnow()
-    x = Post.objects.filter(time_in__range=(start_date, end_date))
+    x = Post.objects.filter(created__range=[start_date, end_date])
 
     for cat in Category.objects.all():
         html_content = render_to_string('email/runapscheduler.html',
@@ -57,7 +57,7 @@ class Command(BaseCommand):
         # добавляем работу нашему задачнику
         scheduler.add_job(
             my_job,
-            trigger=CronTrigger(second="*/100000000000"),
+            trigger=CronTrigger(second="*/10"),
             # То же, что и интервал, но задача тригера таким образом более понятна django
             id="my_job",  # уникальный айди
             max_instances=1,
