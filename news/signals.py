@@ -33,7 +33,8 @@ def new_post(sender, action, instance, **kwargs):
                     subject=f'Здравствуй, {cat.email}. Новая статья в твоём любимом разделе! Заголовок:"{instance.title}"',
                     message=f'Дата создания записи: {instance.created.strftime("%d %m %Y")}, первые 50 символов поста: {instance.text[:50]}',
                     from_email='dmitrushatest@yandex.ru',
-                    recipient_list=[cat.email]
+                    recipient_list=[cat.email]  # cat.get_subscribers_emails() - другой вариант. Условие: цикл:
+                    # for cat in Category.subscribers.all():
                 )
 
                 print(cat.email)

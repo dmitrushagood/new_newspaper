@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
 
     'django_filters',
-    'django_apscheduler' 
+    'django_apscheduler',
     #'news',
     'accounts',
     'sign',

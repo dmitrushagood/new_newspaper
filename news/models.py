@@ -26,8 +26,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=64, unique=True)
-    subscribers = models.ManyToManyField(User,  through='CategoryUser')    # закомментировал запись,чтобы пропустить.
-    # Нужно для дальнейшего задания
+    subscribers = models.ManyToManyField(User,  through='CategoryUser')
 
 
 class CategoryUser(models.Model):
