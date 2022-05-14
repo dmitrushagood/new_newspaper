@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
+{{ my_post.author.user }} Вышла новая статья: <b>{{Post.title}}</b>
+        <br>
 
+        чтобы ознакомиться с ней пройдите по <a href= "http://127.0.0.1:8000/news/{{ Post.id }}">ссылке</a>
+    <hr>
+    <p> краткое содержание:
+    <br>
+    {{Post.text|truncatechars:50}}
+    </p>
 </body>
 </html>
